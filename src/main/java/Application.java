@@ -1,3 +1,4 @@
+import domain.Book;
 import domain.ConfigReader;
 import domain.ConnectionManager;
 

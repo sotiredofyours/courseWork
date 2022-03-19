@@ -14,13 +14,19 @@ public class ConfigReader {
         catch (Exception e){
             e.printStackTrace();
         }
+       return;
     }
 
     public String getURL(){
+        try{
         var host = rb.getString("host");
         var database = rb.getString("database");
         var port = Integer.parseInt(rb.getString("port"));
-        return String.format("%s:%d/%s", host, port, database);
+            return String.format("%s:%d/%s", host, port, database);}
+        catch (Exception e){
+            e.printStackTrace();
+        }
+       return null;
     }
     public String getUsername(){
         return rb.getString("username");
