@@ -12,11 +12,12 @@ public class RSManager {
             columns = rs.getMetaData().getColumnCount();
             while (rs.next()) {
                 for (int i = 1; i <= columns; i++) {
-                    str.append(rs.getString(i) + "\t");
+                    str.append(rs.getString(i)).append("\t");
                 }
             }
             rs.close();
         }
+
         catch (SQLException e) {
         }
     }
