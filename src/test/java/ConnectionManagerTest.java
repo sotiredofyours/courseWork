@@ -1,5 +1,4 @@
-import domain.ConnectionManager;
-import org.checkerframework.checker.units.qual.C;
+import connection.ConnectionManager;
 import org.junit.Assert;
 import org.junit.Test;
 

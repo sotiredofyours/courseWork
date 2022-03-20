@@ -1,7 +1,6 @@
-import domain.ConfigReader;
+import dataBaseConfig.ConfigReader;
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.*;
 
 public class ConfigReaderTest {
 
@@ -11,7 +10,7 @@ public class ConfigReaderTest {
         Assert.assertNotNull(cr);
     }
 
-    //TODO
+
     @Test
     public void wrongConstructorTest(){
         var cr = new ConfigReader("ds");
