@@ -3,6 +3,8 @@ import connection.ConnectionManager;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.SQLException;
+
 public class StatementManagerTest {
 
     @Test
@@ -24,7 +26,7 @@ public class StatementManagerTest {
     public void createPreparedStatementWithRightConnection(){
         var con = new ConnectionManager().getConnection("dbconfig");
         var sm = new StatementManager();
-        var res = sm.createPreparedStatement(con, "null");
+        var res = sm.createPreparedStatement(con, "not null");
         Assert.assertNotNull(res);
     }
 }
