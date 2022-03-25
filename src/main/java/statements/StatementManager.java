@@ -1,4 +1,4 @@
-package Statements;
+package statements;
 
 import lombok.extern.log4j.Log4j;
 

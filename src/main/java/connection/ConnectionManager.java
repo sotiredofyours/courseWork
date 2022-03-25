@@ -1,6 +1,6 @@
 package connection;
 
-import dataBaseConfig.ConfigReader;
+import databaseconfig.ConfigReader;
 import lombok.extern.log4j.Log4j;
 import java.sql.*;
 

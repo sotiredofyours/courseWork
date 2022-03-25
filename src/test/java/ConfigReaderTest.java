@@ -1,5 +1,4 @@
-import dataBaseConfig.ConfigReader;
-import org.checkerframework.checker.index.qual.PolyUpperBound;
+import databaseconfig.ConfigReader;
 import org.junit.Assert;
 import org.junit.Test;
 

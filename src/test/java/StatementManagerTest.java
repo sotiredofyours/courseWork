@@ -1,9 +1,7 @@
-import Statements.StatementManager;
+import statements.StatementManager;
 import connection.ConnectionManager;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.sql.SQLException;
 
 public class StatementManagerTest {
 

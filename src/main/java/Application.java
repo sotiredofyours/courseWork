@@ -1,5 +1,6 @@
-import ResultSets.RSManager;
-import Statements.StatementManager;
+import mapperbook.MapperBook;
+import resultsets.RSManager;
+import statements.StatementManager;
 import connection.ConnectionManager;
 import java.sql.SQLException;
 
@@ -10,6 +11,7 @@ public class Application {
         var sm = new StatementManager();
         var rs =  new RSManager();
         var kek = rs.executeSql(sm.createStatement(con), "Select * from books");
-        rs.printResultSet(kek);
+        var res = new MapperBook().createBookFromRS(kek);
+        System.out.println(res.get(0).getAuthor());
     }
 }
