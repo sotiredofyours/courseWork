@@ -1,12 +1,16 @@
 package dataBaseConfig;
 
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 @Log4j
+@Setter
 public class ConfigReader {
 
-    private final String rbName;
+    private String rbName;
 
     public ConfigReader(String baseName){
         rbName = baseName;
@@ -31,8 +35,8 @@ public class ConfigReader {
             var rb = ResourceBundle.getBundle(rbName);
             return rb.getString("username");
         }
-        catch (Exception e){
-            log.error("Error getting the username");
+        catch (MissingResourceException e){
+            log.error("Config file not found");
         }
         return null;
     }

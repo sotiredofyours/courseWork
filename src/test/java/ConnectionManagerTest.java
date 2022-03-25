@@ -32,4 +32,5 @@ public class ConnectionManagerTest {
         var res = cm.getConnection("testDB");
         Assert.assertNull(res);
     }
+
 }
