@@ -18,7 +18,6 @@ public class RSManager {
         return null;
     }
 
-
     public void printResultSet(ResultSet rs){
         int columns = 0;
         try {

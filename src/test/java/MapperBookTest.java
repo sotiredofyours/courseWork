@@ -1,4 +1,5 @@
 import connection.ConnectionManager;
+import domain.Book;
 import mapperbook.MapperBook;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,4 +26,16 @@ public class MapperBookTest {
         var res = new MapperBook().createBookFromRS(null);
         Assert.assertNull(res);
     }
+
+    @Test
+    public void idCreationTest(){
+        var res = new MapperBook().GetBookById(1, new ConnectionManager().getConnection("dbconfig"));
+        var book = Book.builder()
+                .id(1)
+                .title("Peace and War")
+                .author("Leo Tolstoy")
+                .quantity(10);
+        Assert.assertEquals(book, res);
+    }
+
 }
