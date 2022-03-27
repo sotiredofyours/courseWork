@@ -30,19 +30,17 @@ public class MapperBook {
     }
 
      public Book createBookFromRS(ResultSet rs) {
-          if (rs != null) {
-               try {
-                    return Book.builder()
-                            .id(rs.getInt(1))
-                            .title(rs.getString(2))
-                            .author(rs.getString(3))
-                            .quantity(rs.getInt(4))
-                            .build();
-               }
-               catch (SQLException e){
-                    log.error("Book creation error");
-               }
-          }
+        try {
+            return Book.builder()
+                    .id(rs.getInt(1))
+                    .title(rs.getString(2))
+                    .author(rs.getString(3))
+                    .quantity(rs.getInt(4))
+                    .build();
+        }
+        catch (SQLException e){
+            log.error("Book creation error");
+        }
           return null;
      }
 
@@ -58,7 +56,7 @@ public class MapperBook {
                   createPreparedStatement(con, "Select * from books where id = ?")){
                pstmt.setInt(1, ID);
              try(var rs =  pstmt.executeQuery()) {
-                  if (rs != null && moveNextRS(rs)) {
+                  if (moveNextRS(rs)) {
                        return createBookFromRS(rs);
                   }
                   else log.error("Book with this id does`t exist");
@@ -75,7 +73,7 @@ public class MapperBook {
                   createPreparedStatement(con, "Select * from books where author = ?")){
                pstmt.setString(1, author);
                try(var rs =  pstmt.executeQuery()) {
-                    if (rs != null && moveNextRS(rs)) {
+                    if (moveNextRS(rs)) {
                          return createBookFromRS(rs);
                     }
                     else log.error("Book with this id does`t exist");
