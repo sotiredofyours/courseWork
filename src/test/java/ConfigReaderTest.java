@@ -15,28 +15,28 @@ public class ConfigReaderTest {
     public void getUrlTest(){
         var cr = new ConfigReader("testDB");
         Assert.assertEquals("host=jdbc:postgresql://localhost:5432/test", cr.getURL());
-        cr.setRbName("123");
-        Assert.assertNull(cr.getURL());
+        var testCR2 = new ConfigReader("123");
+        Assert.assertNull(testCR2.getURL());
     }
 
     @Test
     public void getUsernameTest(){
-        var cr = new ConfigReader("testDB");
-        Assert.assertEquals("postgres", cr.getUsername());
-        cr.setRbName("123");
-        Assert.assertNull(cr.getUsername());
-        cr.setRbName("wrongtestdb");
-        Assert.assertNull(cr.getUsername());
+        var testCR = new ConfigReader("testDB");
+        Assert.assertEquals("postgres", testCR.getUsername());
+        var testCR2 = new ConfigReader("123");
+        Assert.assertNull(testCR2.getUsername());
+        var testCR3 = new ConfigReader("wrongtestdb");
+        Assert.assertNull(testCR3.getUsername());
     }
 
     @Test
     public void getPasswordTest(){
         var cr = new ConfigReader("testDB");
-        Assert.assertEquals("admin213", cr.getPass());
-        cr.setRbName("123");
-        Assert.assertNull(cr.getUsername());
-        cr.setRbName("wrongtestdb");
-        Assert.assertNull(cr.getUsername());
+        Assert.assertEquals("admin213", cr.getPassword());
+        var testCR2 = new ConfigReader("123");
+        Assert.assertNull(testCR2.getUsername());
+        var testCR3 = new ConfigReader("wrongtestdb");
+        Assert.assertNull(testCR3.getUsername());
     }
 
 

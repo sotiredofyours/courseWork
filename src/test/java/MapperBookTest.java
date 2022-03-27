@@ -1,41 +1,36 @@
 import connection.ConnectionManager;
-import domain.Book;
 import mapperbook.MapperBook;
 import org.junit.Assert;
 import org.junit.Test;
-import resultsets.RSManager;
-import statements.StatementManager;
-
-import java.util.Optional;
 
 public class MapperBookTest {
 
     @Test
-    public void TestWithNormalRS(){
-        double d = 1;
+    public void gettingBookById(){
         var con = new ConnectionManager().getConnection("dbconfig");
-        var stmt = new StatementManager().createStatement(con);
-        var rs = new RSManager().executeSql(stmt, "Select * from books");
-        var res = new MapperBook().createBookFromRS(rs);
-        Assert.assertEquals("Leo Tolstoy", res.get(0).getAuthor());
-        Assert.assertEquals(Optional.of(1), Optional.ofNullable((Integer) res.get(0).getId()));
+        var book = new MapperBook().getBookById(1, con);
+        Assert.assertEquals("Leo Tolstoy", book.getAuthor());
+        Assert.assertEquals("Peace and War", book.getTitle());
+        Assert.assertNull(new MapperBook().getBookById(1,null));
+        Assert.assertNull(new MapperBook().getBookById(2312,null));
     }
 
     @Test
-    public void TestWithWrongRS(){
-        var res = new MapperBook().createBookFromRS(null);
-        Assert.assertNull(res);
+    public void gettingAllBooks(){
+        var con = new ConnectionManager().getConnection("dbconfig");
+        var books = new MapperBook().getAllBooks(con);
+        Assert.assertEquals(2, books.size());
+        books = new MapperBook().getAllBooks(null);
+        Assert.assertEquals(0, books.size());
     }
 
     @Test
-    public void idCreationTest(){
-        var res = new MapperBook().GetBookById(1, new ConnectionManager().getConnection("dbconfig"));
-        var book = Book.builder()
-                .id(1)
-                .title("Peace and War")
-                .author("Leo Tolstoy")
-                .quantity(10);
-        Assert.assertEquals(book, res);
+    public void gettingBookByAuthor(){
+        var con = new ConnectionManager().getConnection("dbconfig");
+        var book = new MapperBook().getBookByAuthor("Leo Tolstoy", con);
+        Assert.assertEquals("Peace and War", book.getTitle());
     }
+
+
 
 }

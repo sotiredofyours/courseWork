@@ -20,7 +20,7 @@ public class ConnectionManager {
     public Connection getConnection(String configName) {
         ConfigReader cr = new ConfigReader(configName);
         try {
-            return DriverManager.getConnection(cr.getURL(), cr.getUsername(), cr.getPass());
+            return DriverManager.getConnection(cr.getURL(), cr.getUsername(), cr.getPassword());
         } catch (SQLException e) {
             log.error("Connect to DB error");
         }

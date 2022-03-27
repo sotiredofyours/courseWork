@@ -2,7 +2,6 @@ import connection.ConnectionManager;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertThat;
 
 public class ConnectionManagerTest {
 

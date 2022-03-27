@@ -1,53 +1,46 @@
 package databaseconfig;
 
-import lombok.Setter;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 
-import java.util.MissingResourceException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+@Getter
 @Log4j
-@Setter
 public class ConfigReader {
 
     private String rbName;
+    private String URL;
+    private String Password;
+    private String Username;
 
-    public ConfigReader(String baseName){
+    public ConfigReader(String baseName) {
         rbName = baseName;
+        Init();
     }
 
-    public String getURL(){
-        try{
+    private void Init() {
+        try {
+            URL = doURL();
+            var rb = ResourceBundle.getBundle(rbName);
+            Password = rb.getString("password");
+            Username = rb.getString("username");
+        }
+        catch (Exception e) {
+            log.error("ConfigReader error");
+        }
+    }
+
+    private String doURL() {
+        try {
             var rb = ResourceBundle.getBundle(rbName);
             var host = rb.getString("host");
             var database = rb.getString("database");
             var port = Integer.parseInt(rb.getString("port"));
             return String.format("%s:%d/%s", host, port, database);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             log.error("Error getting the URL");
-        }
-       return null;
-    }
-
-    public String getUsername(){
-        try {
-            var rb = ResourceBundle.getBundle(rbName);
-            return rb.getString("username");
-        }
-        catch (MissingResourceException e){
-            log.error("Config file not found");
-        }
-        return null;
-    }
-
-    public String getPass(){
-        try {
-            var rb = ResourceBundle.getBundle(rbName);
-            return rb.getString("password");
-        }
-        catch (Exception e){
-            log.error("Error getting the password");
         }
         return null;
     }
