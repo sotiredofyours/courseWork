@@ -23,7 +23,7 @@ public class MapperBook {
               }
           }
           catch (SQLException e) {
-              log.error("Making book error");
+              log.error("Getting all books error");
               return null;
          }
           return result;

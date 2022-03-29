@@ -2,15 +2,13 @@ package databaseconfig;
 
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
-
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 @Getter
 @Log4j
 public class ConfigReader {
 
-    private String rbName;
+    private final String rbName;
     private String URL;
     private String Password;
     private String Username;
